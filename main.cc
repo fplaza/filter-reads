@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 		const Parameters& pars = Parameters::parse(argc, argv);
 
-		ReadsFilter reads_filter(pars.jellyfish_db_file);
+		ReadsFilter reads_filter(pars.jellyfish_db_file, pars.keep_read_threshold);
 		std::cout << "Indexing all " << reads_filter.kmer_len() << "-mers..." << std::endl;
 		time_profiler.start_new_timer("Indexing k-mers");
 		reads_filter.index_kmers();

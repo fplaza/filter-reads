@@ -27,24 +27,23 @@ void ReadsFilter::filter_reads(std::vector<Read>& reads)
 		{
 			const Read& r = reads[i];
 			kmer_scanner.set_curr_seq(r.seq);
-			bool keep_read = true;
 
+			uint64_t num_kmers_in_index = 0;
 			while(kmer_scanner.next_kmer(kmer))
 			{
 				if (kmer_scanner.ambig_kmer())
-				{
-					keep_read = false;
 					break;
-				}
 
 				if (kmers_index_.find(kmer) != kmers_index_.end())
 				{
-					keep_read = true;
-					break;
+					num_kmers_in_index++;
+
+					if (num_kmers_in_index >= keep_read_threshold_)
+						break;
 				}
 			}
 
-			keep_reads[i] = keep_read;
+			keep_reads[i] =  (num_kmers_in_index >= keep_read_threshold_);
 		}
 	}
 

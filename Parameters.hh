@@ -9,6 +9,7 @@ struct Parameters
 	std::string input_file;
 	std::string jellyfish_db_file;
 	std::string output_file;
+	uint64_t keep_read_threshold;
 
 
 	static Parameters parse(int argc, char* argv[]);

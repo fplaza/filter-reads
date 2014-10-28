@@ -17,6 +17,7 @@ Parameters Parameters::parse(int argc, char* argv[])
 		("input-file,i", po::value<std::string>(&pars.input_file), "")
 		("jellyfish-db,j", po::value<std::string>(&pars.jellyfish_db_file), "")
 		("output-file,o", po::value<std::string>(&pars.output_file), "")
+		("keep-read-threshold,t", po::value<uint64_t>(&pars.keep_read_threshold)->default_value(1), "")
 		;
 
 
