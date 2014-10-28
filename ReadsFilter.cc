@@ -31,9 +31,15 @@ void ReadsFilter::filter_reads(std::vector<Read>& reads)
 
 			while(kmer_scanner.next_kmer(kmer))
 			{
-				if (kmer_scanner.ambig_kmer() || kmers_index_.find(kmer) == kmers_index_.end())
+				if (kmer_scanner.ambig_kmer())
 				{
 					keep_read = false;
+					break;
+				}
+
+				if (kmers_index_.find(kmer) != kmers_index_.end())
+				{
+					keep_read = true;
 					break;
 				}
 			}

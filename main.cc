@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 			num_reads_kept += reads_chunk.size();
 
 			for (size_t curr_read = 0; curr_read < reads_chunk.size(); curr_read++)
-				ofs << reads_chunk[curr_read] << '\n';
+				ofs << reads_chunk[curr_read].name << '\n';
 		}
 		time_profiler.stop_last_timer();
 		std::cout << "Done. " <<  num_reads << " reads processed, " << num_reads_kept << " kept. " << std::endl;
